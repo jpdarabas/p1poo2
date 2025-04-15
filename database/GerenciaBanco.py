@@ -34,7 +34,7 @@ class GerenciaBanco():
         if not self.__conexao:
             self.conectar()
 
-        arquivos_sql = ["database/.sql", "database/.sql"]
+        arquivos_sql = ["database/avaliacoes.sql", "database/imoveis.sql", "database/reservas.sql", "database/usuarios.sql"]
         
         for arquivo in arquivos_sql:
             with open(arquivo, 'r', encoding='utf-8') as f:
@@ -60,6 +60,7 @@ class GerenciaBanco():
         self.__cursor.execute("SELECT * FROM usuario WHERE email = ? AND senha = ?", (email, senha))
         usuario = self.__cursor.fetchone()
         if usuario:
+            self.__usuario = Usuario(usuario["id"], usuario["email"], usuario["nome"], usuario["tipo"])
             self.__usuario = usuario
             return True
         return False
