@@ -14,8 +14,8 @@ class GerenciaBanco():
     def __init__(self):
         if hasattr(self, "_inicializado") and self._inicializado:
             return
-        self._inicializado = True
-        self.nome_banco = "aluguel.db"
+        self._inicializado:bool = True
+        self.nome_banco:str = "aluguel.db"
         self.__conexao = None
         self.__usuario: Usuario | None = None
         self.__imoveis: list[Imovel] = []
