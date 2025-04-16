@@ -1,7 +1,7 @@
 from datetime import date
 class Reserva:
     def __init__(self,
-    id:int,
+    id:int | None,
     data_inicio:date,
     data_fim:date,
     valor_total:float,
@@ -9,8 +9,10 @@ class Reserva:
     locatario_id:int,
     status:str
     ):
-        if status not in ("pendente", "confirmada", "cancelada"):
+        if status not in ("pendente", "confirmada"):
             raise ValueError("Status inválido.")
+        if data_inicio > data_fim:
+            raise ValueError("Data de início não pode ser maior que a data de fim.")
         self.__id = id
         self.__data_inicio = data_inicio
         self.__data_fim = data_fim
@@ -42,6 +44,10 @@ class Reserva:
         return self.__status
 
     # Setters
+
+    def set_id(self, id):
+        self.__id = id
+
     def set_data_inicio(self, data_inicio):
         self.__data_inicio = data_inicio
 
@@ -50,5 +56,10 @@ class Reserva:
 
     def set_valor_total(self, valor_total):
         self.__valor_total = valor_total
+
+    def set_status(self, status):
+        if status not in ("pendente", "confirmada", "cancelada"):
+            raise ValueError("Status inválido.")
+        self.__status = status
 
     

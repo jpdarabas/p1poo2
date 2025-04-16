@@ -2,7 +2,7 @@
 
 class Imovel:
     def __init__(self,
-    id:int,
+    id:int | None,
     titulo:str,
     descricao:str,
     endereco:str,
@@ -15,12 +15,16 @@ class Imovel:
         self.__descricao = descricao
         self.__endereco = endereco
         self.__valor_diaria = valor_diaria
-        self.__disponibilidade = disponibilidade
+        self.__locador_id = locador_id
      
     # Getters
 
+    def get_id(self):
+        return self.__id
+
     def get_titulo(self):
         return self.__titulo
+    
     def get_descricao(self):
         return self.__descricao
 
@@ -30,10 +34,13 @@ class Imovel:
     def get_valor_diaria(self):
         return self.__valor_diaria
 
-    def get_disponibilidade(self):
-        return self.__disponibilidade
+    def get_locador_id(self):
+        return self.__locador_id
 
     # Setters
+
+    def set_id(self, id):
+        self.__id = id
 
     def set_titulo(self, titulo):
         self.__titulo = titulo
@@ -48,9 +55,3 @@ class Imovel:
         if valor_diaria < 0:
             raise ValueError("Valor da diária não pode ser negativo.")
         self.__valor_diaria = valor_diaria
-
-    def set_disponibilidade(self, disponibilidade):
-        if disponibilidade not in (True, False):
-            raise ValueError("Disponibilidade deve ser True ou False.")
-        self.__disponibilidade = disponibilidade
-    

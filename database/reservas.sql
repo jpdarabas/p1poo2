@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS reservas (
     valor_total REAL NOT NULL,
     imovel_id INTEGER NOT NULL,
     locatario_id INTEGER NOT NULL,
+    status TEXT NOT NULL CHECK (status IN ('pendente', 'confirmada')),
     FOREIGN KEY (imovel_id) REFERENCES imoveis(id),
     FOREIGN KEY (locatario_id) REFERENCES usuarios(id)
 );
